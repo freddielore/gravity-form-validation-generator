@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+		<title>Gravity Form Validation Script Generator</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <style>
+            body {
+                padding-top: 50px;
+                padding-bottom: 20px;
+            }
+        </style>
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    </head>
+    <body>
+	<div class="header">
+		<div class="container"><p>{ Tools }</p></div>
+	</div>
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Script Generator</h1>
+        <p>Generates custom scripts for a neat, less obstrusive Gravity Form validation. <a href="http://screencast.com/t/3iBbvyXEP" target="_blank">See how it works</a>.</p>
+        <p class="author css">Created with love by <a href="http://twitter.com/freddielore" target="_blank">@freddielore</a>. Be sure to add the following style to your main CSS:</p>
+		<code>
+			.error {
+				border: 1px solid #C89797!important;
+				background: #FFDFE0!important;
+				color: #790000;
+			}
+		</code>
+		
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-lg-6">
+          <h2>Let's Build It!</h2>
+			<form class="form-inline gform_metas" role="form">
+				<div class="form-group">
+					<label class="sr-only" for="form-id">Gravity Form ID (e.g. gform_3)</label>
+					<input type="text" class="form-control" id="form-id" placeholder="Gravity Form ID (e.g. gform_3)">
+				</div>
+				<div class="form-group">
+					<label class="sr-only" for="form-name">Gravity Form Name (e.g. Quick Contact)</label>
+					<input type="text" class="form-control" id="form-name" placeholder="Gravity Form Name (e.g. Quick Contact)">
+				</div>
+			</form>
+			
+			<form class="form-inline gform_fields" role="form">
+				<div class="gform_field highlight last" id="gform_field_1" rel="1">
+					<div class="form-group">
+						<label class="sr-only" for="field-id-1">Input field ID (e.g. input_3_1),</label>
+						<input type="text" class="form-control" id="field-id-1" placeholder="Input field ID (e.g. input_3_1),">
+					</div>
+					<div class="form-group">
+						<label class="sr-only" for="field-name-1">Input field name (e.g. Email)</label>
+						<input type="text" class="form-control" id="field-name-1" placeholder="Input field name (e.g. Email)">
+					</div>
+					<button type="submit" class="btn btn-default add-another pull-right" id="field-add-1">Add Another</button>
+				</div>
+			</form>
+			<form class="form-inline gform_fields" role="form">
+				<button type="submit" class="btn btn-primary generate-script">Generate Script</button>
+			</form>
+		</div>
+        <div class="col-lg-6 output">
+          <h2>Output</h2>
+		  <p class="small">Beautify scripts below with <a href="http://jsbeautifier.org/" title="Opens in a new tab" target="_blank"><strong>jsbeautifier.org</strong></a></p>
+			<pre contenteditable class="language-javascript" id="selectable"></pre>
+       </div>
+        
+		<div class="defaults hide">
+			function isNumber(n) {
+				return !isNaN(parseFloat(n)) && isFinite(n);
+			}
+
+			function isValidEmailAddress(emailAddress) {
+				var pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i);
+				return pattern.test(emailAddress);
+			}
+			
+			if (/MSIE (\d+\.\d+);/.test(navigator.userAgent)){ 
+			 	var ieversion=new Number(RegExp.$1);
+			}
+			
+			/** Remove all onClick attributes of forms */
+			$('.gform_wrapper .gform_button, .gform_wrapper .gform_image_button').removeAttr('onclick');
+		</div>
+		
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>Created by Freddie Lore &copy; 2014. <span class="pull-right"><a href="mailto:freddie@oracledigital.coma.au" target="_blank" title="Email Freddie">Report a bug</a> | <a href="mailto:freddielore89@gmail.com" target="_blank" title="Email Freddie for suggestion">Send suggestion</a></p>
+      </footer>
+    </div> <!-- /container -->        
+		<script src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery-syntaxhighlighter/jquery.syntaxhighlighter.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+
+        <script src="js/main.js"></script>
+    </body>
+</html>
